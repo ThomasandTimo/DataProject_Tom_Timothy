@@ -1,14 +1,36 @@
 import pandas as pd
+from typing import Optional
 
-def load_excel_data(file_path: str) -> dict:
-    """Charge les données d'un fichier Excel avec plusieurs feuilles."""
-    return pd.read_excel(file_path, sheet_name=None)  # Dictionnaire {feuille: DataFrame}
+def load_sheet(file_path: str) -> Optional[pd.DataFrame]:
+    """
+    Charge une seule feuille d'un fichier Excel.
+
+    Args:
+        file_path (str): Chemin vers le fichier Excel brut.
+        sheet_name (str): Nom de la feuille à charger.
+
+    Returns:
+        Optional[pd.DataFrame]: Un DataFrame contenant les données de la feuille, ou None en cas d'erreur.
+    """
+    try:
+        # Charger la feuille spécifique
+        data = pd.read_excel(file_path, "EM-DAT Data")
+        print(f"Feuille chargée avec succès.")
+        return data
+    except FileNotFoundError:
+        print(f"Erreur : Le fichier '{file_path}' est introuvable.")
+        return None
+    except Exception as e:
+        print(f"Erreur lors du chargement de la feuille : {e}")
+        return None
 
 if __name__ == "__main__":
+    # Chemin du fichier brut
     file_path = "data/raw/rawdata.xlsx"
-    data = load_excel_data(file_path)
-    print(f"Feuilles disponibles : {data.keys()}")
-
-    data_full = pd.read_excel(file_path, sheet_name="EM-DAT Data")
-
-    print(data_full)
+    
+    # Charger la feuille
+    data = load_sheet(file_path)
+    
+    # Afficher les 5 premières lignes si la feuille a été chargée avec succès
+    if data is not None:
+        print(data.head())
