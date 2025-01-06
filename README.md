@@ -1,2 +1,3 @@
 # DataProject
-Python Data Project. Coworker : Tom Raffner
+Python Data Project. 
+Coworkers : Tom Raffner, Timothy Oupindrin
