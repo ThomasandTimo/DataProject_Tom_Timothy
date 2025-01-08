@@ -30,7 +30,10 @@ app = dash.Dash(__name__)
 # Layout du dashboard
 app.layout = html.Div([
     html.H1("Dashboard des Catastrophes Naturelles"),
-    dcc.Graph(figure=fig)
+    dcc.Graph(
+        figure=fig,
+        style={"height": "80vh", "width": "90%"}
+    )
 ])
 
 if __name__ == "__main__":
