@@ -31,6 +31,8 @@ if __name__ == "__main__":
     # Charger la feuille
     data = load_sheet(file_path)
     
-    # Afficher les 5 premières lignes si la feuille a été chargée avec succès
-    if data is not None:
-        print(data.head())
+    # Regrouper par pays pour compter le nombre de catastrophes
+    catastrophes_par_pays = data.groupby("Country").size().reset_index(name="Count")
+
+    # Afficher un aperçu des résultats
+    print(catastrophes_par_pays.head())
