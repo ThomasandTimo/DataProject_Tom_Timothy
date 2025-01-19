@@ -14,7 +14,7 @@ def load_sheet(file_path: str) -> Optional[pd.DataFrame]:
     """
     try:
         # Charger la feuille spécifique
-        data = pd.read_excel(file_path, "EM-DAT Data")
+        data = pd.read_excel(file_path)
         print(f"Feuille chargée avec succès.")
         return data
     except FileNotFoundError:
